@@ -16,12 +16,12 @@ class ProductApiController with ApiMixin {
   Future<List<ProductDetails>> getAllProducts() async {
     var response = await http.get(getUrl(ApiSettings.PRODUCT_DETAILS),
         headers: {
-      'Accept':'application/json',
+      'Accept':'application/json', 'X-Requested-With': 'XMLHttpRequest',
     });
     if (isSuccessRequest(response.statusCode)) {
       var data = jsonDecode(response.body) as List;
-      List<ProductDetails> favoriteProducts = data.map((e) => ProductDetails.fromJson(e)).toList();
-      return favoriteProducts;
+      List<ProductDetails> Products = data.map((e) => ProductDetails.fromJson(e)).toList();
+      return Products;
     }
     return [];
   }
@@ -32,12 +32,11 @@ class ProductApiController with ApiMixin {
     var response = await http.get(
         getUrl(ApiSettings.PRODUCT_DETAILS +'/$id'),
         headers: {
-          HttpHeaders.authorizationHeader: SharedPreferencesController().token,
-          'X-Requested-With': 'XMLHttpRequest',
-          'lang': SharedPreferencesController().languageCode,
+          'X-Requested-With': 'XMLHttpRequest',      'Accept':'application/json',
+
         });
     if (isSuccessRequest(response.statusCode)) {
-      var data = jsonDecode(response.body)['object'];
+      var data = jsonDecode(response.body);
       var productDetails = ProductDetails.fromJson(data);
       return productDetails;
     }

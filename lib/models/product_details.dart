@@ -1,11 +1,12 @@
 class ProductDetails {
   late int id;
   late  String title;
-  late  double price;
+  late  num price;
   late String description;
   late String category;
   late String image;
   late Rating rating;
+  bool favorite =false;
 
   ProductDetails();
 
@@ -36,7 +37,7 @@ class ProductDetails {
 }
 
 class Rating {
-  double? rate;
+  num? rate;
   int? count;
 
   Rating({this.rate, this.count});

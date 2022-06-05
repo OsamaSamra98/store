@@ -9,6 +9,7 @@ import '../models/product_details.dart';
 class ProductGetxController extends GetxController {
   final ProductApiController productApiController = ProductApiController();
   RxList<ProductDetails> products = <ProductDetails>[].obs;
+  RxList<ProductDetails> productsSelected = <ProductDetails>[].obs;
   Rx<ProductDetails?> productDetails = ProductDetails().obs;
   RxBool loading = false.obs;
 
@@ -21,7 +22,13 @@ class ProductGetxController extends GetxController {
     loading.value = false;
     update();
   }
-
+  getProductByType(String? category){
+    if(category == null){
+      productsSelected.value = products;
+    }else{
+      productsSelected.value = products.where((p0) => p0.category == category).toList();
+    }
+  }
 
   void onInit() {
     super.onInit();

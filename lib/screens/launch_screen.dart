@@ -5,6 +5,7 @@ import 'package:store/screens/Home/home_screen.dart';
 
 import '../getx/categories_getx_controller.dart';
 import '../getx/product_getx_controller.dart';
+import '../getx/profile_getx_controller.dart';
 import '../getx/user_getx_controller.dart';
 import '../shared_preferences/preferences.dart';
 import 'login/login_Screen.dart';
@@ -19,6 +20,7 @@ class launch_screen extends StatefulWidget {
 class _launch_screenState extends State<launch_screen> {
   UsersGetxController usersController = Get.put(UsersGetxController());
   ProductGetxController controller = Get.put(ProductGetxController());
+  ProfileGetxController profileGetxController = Get.put(ProfileGetxController());
 
 
   @override

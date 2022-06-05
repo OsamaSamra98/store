@@ -16,11 +16,11 @@ class ProfileApiController with ApiMixin {
 
 
   Future<List<Profile>> getProfile() async {
-    var response = await http.get(getUrl(ApiSettings.profile),headers: {
-      'Accept':'application/json',
-      HttpHeaders.authorizationHeader: SharedPreferencesController().token,
-      'X-Requested-With': 'XMLHttpRequest',
-    });
+    var response = await http.get(getUrl(ApiSettings.profile),
+   headers: {
+        'X-Requested-With': 'XMLHttpRequest',      'Accept':'application/json',
+
+        });
     if (isSuccessRequest(response.statusCode)) {
       var data = jsonDecode(response.body) as List;
       List<Profile> profile = data.map((e) => Profile.fromJson(e)).toList();

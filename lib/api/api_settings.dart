@@ -9,7 +9,7 @@ class ApiSettings {
   //Cities Request
 
   //category Req && sub category
-  static const String CATEGORY = _BASE_URL + "categories";
+  static const String CATEGORY = _BASE_URL + products+"/categories";
 
   //product re
   static const String PRODUCT_DETAILS = _BASE_URL + "products";

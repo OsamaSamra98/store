@@ -24,14 +24,14 @@ late int iV;
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.address != null) {
-      data['address'] = this.address!.toJson();
+      data['address'] = this.address.toJson();
     }
     data['id'] = this.id;
     data['email'] = this.email;
     data['username'] = this.username;
     data['password'] = this.password;
     if (this.name != null) {
-      data['name'] = this.name!.toJson();
+      data['name'] = this.name.toJson();
     }
     data['phone'] = this.phone;
     data['__v'] = this.iV;
@@ -50,9 +50,7 @@ class Address {
       {this.geolocation, this.city, this.street, this.number, this.zipcode});
 
   Address.fromJson(Map<String, dynamic> json) {
-    geolocation = json['geolocation'] != null
-        ? new Geolocation.fromJson(json['geolocation'])
-        : null;
+    geolocation =   Geolocation.fromJson(json['geolocation']);
     city = json['city'];
     street = json['street'];
     number = json['number'];
@@ -84,7 +82,7 @@ class Geolocation {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  Map<String, dynamic>();
     data['lat'] = this.lat;
     data['long'] = this.long;
     return data;

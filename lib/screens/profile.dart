@@ -7,7 +7,6 @@ import 'package:store/shared_preferences/preferences.dart';
 
 import '../utils/app_text.dart';
 
-
 class profile_screen extends StatefulWidget {
   const profile_screen({Key? key}) : super(key: key);
 
@@ -17,90 +16,92 @@ class profile_screen extends StatefulWidget {
 
 class _profile_screenState extends State<profile_screen> {
 
-  ProfileGetxController profileGetxController =Get.put(ProfileGetxController());
 
-
-   SharedPreferences? sharedPreferences;
+  SharedPreferences? sharedPreferences;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
-      appBar: AppBar(
-        leading: BackButton(color: Colors.black),
-        centerTitle: true,
-        title: AppText(
-          text: 'Profile',
-          fontWeight: FontWeight.bold,
-          fontsize: 20,
+        resizeToAvoidBottomInset: true,
+        appBar: AppBar(
+          leading: BackButton(color: Colors.black),
+          centerTitle: true,
+          title: AppText(
+            text: 'Profile',
+            fontWeight: FontWeight.bold,
+            fontsize: 20,
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Divider(
-              color: Colors.transparent,
-            ),
-            profileWidget(
-              icon: Icon(Icons.person_outline_sharp),
-              text: 'Osama Abo Samra ',
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            profileWidget(
-              icon: Icon(Icons.email_outlined),
-              text: 'Osama Abo Samra ',
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            profileWidget(
-              icon: Icon(Icons.phone),
-              text: 'phone ',
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            profileWidget(
-              icon: Icon(Icons.home_outlined),
-              text: 'city ',
-            ),
-            SizedBox(
-              height: 200,
-            ),            Center(
-              child: ElevatedButton(
-                onPressed: () async{
-                 await logout();
-                },
-                child: Text(
-                  'LOGOUT',
-                  style: TextStyle(
-                      fontSize: 12,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white),
-                ),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  primary: Colors.red,
-                  minimumSize: Size(250, 50),
-                ),
+        body: GetX<ProfileGetxController>(
+          builder: (ProfileGetxController controller) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Divider(
+                    color: Colors.transparent,
+                  ),
+                  profileWidget(
+                    icon: Icon(Icons.person_outline_sharp),
+                    text: 'Osama Abo Samra ',
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  profileWidget(
+                    icon: Icon(Icons.email_outlined),
+                    text: 'Osama Abo Samra ',
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  profileWidget(
+                    icon: Icon(Icons.phone),
+                    text: 'phone ',
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  profileWidget(
+                    icon: Icon(Icons.home_outlined),
+                    text: 'city ',
+                  ),
+                  SizedBox(
+                    height: 200,
+                  ),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        await logout();
+                      },
+                      child: Text(
+                        'LOGOUT',
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        primary: Colors.red,
+                        minimumSize: Size(250, 50),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
-      ),
-    );
+            );
+          },
+        ));
   }
 
   Future<void> logout() async {
-   await sharedPreferences?.setBool('logged_in', false);
+    await sharedPreferences?.setBool('logged_in', false);
     Get.offAll(login_Screen());
   }
 }

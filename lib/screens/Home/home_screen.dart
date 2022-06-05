@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/api/helper/api_mixin.dart';
 import 'package:store/getx/product_getx_controller.dart';
+import 'package:store/screens/category/category_screen.dart';
 import 'package:store/utils/Product_card.dart';
 
 import '../../api/api_settings.dart';
@@ -47,38 +48,43 @@ class _home_ScreenState extends State<home_Screen> with ApiMixin {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Divider(color: Colors.transparent),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Spacer(),
-                  Column(
-                    children: [
-                      SizedBox(height: 30),
-                      Text('Sofa ',
-                          style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold)),
-                      Text('THE Modern Furniture ',
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w500)),
-                    ],
-                  ),
-                  SizedBox(width: 50),
-                  Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(5)),
-                      child: IconButton(
-                          onPressed: () {
-                            Get.to(profile_screen());
-                          },
-                          icon: Icon(
-                            Icons.person,
-                            color: Colors.white,
-                          )))
-                ],
+              GestureDetector(
+                onTap: (){
+                  Get.to(category_screen(categoryName: 'test'));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Spacer(),
+                    Column(
+                      children: [
+                        SizedBox(height: 30),
+                        Text('Sofa ',
+                            style: TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.bold)),
+                        Text('THE Modern Furniture ',
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w500)),
+                      ],
+                    ),
+                    SizedBox(width: 50),
+                    Container(
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(5)),
+                        child: IconButton(
+                            onPressed: () {
+                              Get.to(profile_screen());
+                            },
+                            icon: Icon(
+                              Icons.person,
+                              color: Colors.white,
+                            )))
+                  ],
+                ),
               ),
               SizedBox(height: 15),
               Container(

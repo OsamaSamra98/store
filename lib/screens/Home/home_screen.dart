@@ -88,7 +88,6 @@ class _home_ScreenState extends State<home_Screen> with ApiMixin {
                     color: Colors.transparent),
                 clipBehavior: Clip.antiAlias,
                 child: TextField(
-                  autofocus: true,
                   cursorColor: Colors.black,
                   style: const TextStyle(fontSize: 20),
                   decoration: InputDecoration(
@@ -152,6 +151,7 @@ class _home_ScreenState extends State<home_Screen> with ApiMixin {
               Text('OUR BEST SELLERS',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
               SizedBox(height: 20),
+
               GetX<ProductGetxController>(
                 builder: (ProductGetxController controller) {
                   return controller.products.isEmpty

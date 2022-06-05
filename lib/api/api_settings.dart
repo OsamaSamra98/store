@@ -12,13 +12,9 @@ class ApiSettings {
   static const String CATEGORY = _BASE_URL + "categories";
 
   //product re
-  static const String PRODUCT = _BASE_URL + "sub-categories";
   static const String PRODUCT_DETAILS = _BASE_URL + "products";
-  static const String FAVORITE_PRODUCT = _BASE_URL + "favorite-products";
-  static const String RATTING_PRODUCT = _BASE_URL + "products/rate";
-  static const String RATE = _BASE_URL + "products/rate";
-  static const String ADD_FAVARITE_PRODUCT = _BASE_URL + "favorite-products";
-  static const String READ_FAVARITE_PRODUCT = _BASE_URL + "favorite-products";
+  static const String profile = _BASE_URL + "users/1";
+
 
   //sub category
 

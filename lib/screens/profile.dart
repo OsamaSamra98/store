@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:store/getx/profile_getx_controller.dart';
+import 'package:store/screens/login/login_Screen.dart';
 import 'package:store/shared_preferences/preferences.dart';
 
 import '../utils/app_text.dart';
@@ -12,6 +16,12 @@ class profile_screen extends StatefulWidget {
 }
 
 class _profile_screenState extends State<profile_screen> {
+
+  ProfileGetxController profileGetxController =Get.put(ProfileGetxController());
+
+
+   SharedPreferences? sharedPreferences;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +74,9 @@ class _profile_screenState extends State<profile_screen> {
               height: 200,
             ),            Center(
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () async{
+                 await logout();
+                },
                 child: Text(
                   'LOGOUT',
                   style: TextStyle(
@@ -88,7 +100,8 @@ class _profile_screenState extends State<profile_screen> {
   }
 
   Future<void> logout() async {
-    print(SharedPreferencesController().token);
+   await sharedPreferences?.setBool('logged_in', false);
+    Get.offAll(login_Screen());
   }
 }
 

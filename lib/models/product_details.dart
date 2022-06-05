@@ -1,11 +1,11 @@
 class ProductDetails {
-  int? id;
-  String? title;
-  double? price;
-  String? description;
-  String? category;
-  String? image;
-  Rating? rating;
+  late int id;
+  late  String title;
+  late  double price;
+  late String description;
+  late String category;
+  late String image;
+  late Rating rating;
 
   ProductDetails();
 
@@ -17,7 +17,7 @@ class ProductDetails {
     category = json['category'];
     image = json['image'];
     rating =
-    json['rating'] != null ? new Rating.fromJson(json['rating']) : null;
+    Rating.fromJson(json['rating']);
   }
 
   Map<String, dynamic> toJson() {
@@ -29,7 +29,7 @@ class ProductDetails {
     data['category'] = this.category;
     data['image'] = this.image;
     if (this.rating != null) {
-      data['rating'] = this.rating!.toJson();
+      data['rating'] = this.rating.toJson();
     }
     return data;
   }

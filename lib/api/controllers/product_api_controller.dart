@@ -13,21 +13,10 @@ import '../helper/api_mixin.dart';
 
 class ProductApiController with ApiMixin {
 
-  Future<List<ProductDetails>> getProduct({required int id}) async {
-    var response = await http.get(getUrl(ApiSettings.PRODUCT+'/$id'),headers: header);
-    if (isSuccessRequest(response.statusCode)) {
-      var data = jsonDecode(response.body) as List;
-      List<ProductDetails> products = data.map((e) => ProductDetails.fromJson(e)).toList();
-      return products;
-    }
-    return [];
-  }
-
   Future<List<ProductDetails>> getAllProducts() async {
-    var response = await http.get(getUrl(ApiSettings.PRODUCT_DETAILS),headers: {
+    var response = await http.get(getUrl(ApiSettings.PRODUCT_DETAILS),
+        headers: {
       'Accept':'application/json',
-      HttpHeaders.authorizationHeader: SharedPreferencesController().token,
-      'X-Requested-With': 'XMLHttpRequest',
     });
     if (isSuccessRequest(response.statusCode)) {
       var data = jsonDecode(response.body) as List;

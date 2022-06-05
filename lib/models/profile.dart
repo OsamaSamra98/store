@@ -1,23 +1,22 @@
 class Profile {
-  Address? address;
-  int? id;
-  String? email;
-  String? username;
-  String? password;
-  Name? name;
-  String? phone;
-  int? iV;
+late  Address address;
+late int id;
+late String email;
+late String username;
+late String password;
+late Name name;
+late  String phone;
+late int iV;
 
   Profile();
 
   Profile.fromJson(Map<String, dynamic> json) {
-    address =
-    json['address'] != null ? new Address.fromJson(json['address']) : null;
+    address = Address.fromJson(json['address']);
     id = json['id'];
     email = json['email'];
     username = json['username'];
     password = json['password'];
-    name = json['name'] != null ? new Name.fromJson(json['name']) : null;
+    name = new Name.fromJson(json['name']);
     phone = json['phone'];
     iV = json['__v'];
   }

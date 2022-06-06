@@ -18,7 +18,7 @@ class _profile_screenState extends State<profile_screen> {
 
 
   SharedPreferences? sharedPreferences;
-
+  ProfileGetxController profileGetxController = Get.put(ProfileGetxController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,69 +34,65 @@ class _profile_screenState extends State<profile_screen> {
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
-        body: GetX<ProfileGetxController>(
-          builder: (ProfileGetxController controller) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Divider(
-                    color: Colors.transparent,
-                  ),
-                  profileWidget(
-                    icon: Icon(Icons.person_outline_sharp),
-                    text: 'Osama Abo Samra ',
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  profileWidget(
-                    icon: Icon(Icons.email_outlined),
-                    text: 'Osama Abo Samra ',
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  profileWidget(
-                    icon: Icon(Icons.phone),
-                    text: 'phone ',
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  profileWidget(
-                    icon: Icon(Icons.home_outlined),
-                    text: 'city ',
-                  ),
-                  SizedBox(
-                    height: 200,
-                  ),
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        await logout();
-                      },
-                      child: Text(
-                        'LOGOUT',
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        primary: Colors.red,
-                        minimumSize: Size(250, 50),
-                      ),
-                    ),
-                  ),
-                ],
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Divider(
+                color: Colors.transparent,
               ),
-            );
-          },
+              profileWidget(
+                icon: Icon(Icons.person_outline_sharp),
+                text: profileGetxController.profile!['name']['firstname'].toString()+' '+profileGetxController.profile!['name']['lastname'].toString(),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              profileWidget(
+                icon: Icon(Icons.email_outlined),
+                text: profileGetxController.profile!['email'].toString(),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              profileWidget(
+                icon: Icon(Icons.phone),
+                text:profileGetxController.profile!['phone'].toString(),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              profileWidget(
+                icon: Icon(Icons.home_outlined),
+                text: profileGetxController.profile!['address']['city'].toString(),
+              ),
+              SizedBox(
+                height: 200,
+              ),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () async {
+                    await logout();
+                  },
+                  child: Text(
+                    'LOGOUT',
+                    style: TextStyle(
+                        fontSize: 12,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    primary: Colors.red,
+                    minimumSize: Size(250, 50),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ));
   }
 
@@ -128,7 +124,7 @@ class profileWidget extends StatelessWidget {
         ),
         Text(text,
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 16,
               fontWeight: FontWeight.w500,
             )),
       ]),

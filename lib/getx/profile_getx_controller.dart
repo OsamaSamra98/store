@@ -12,7 +12,7 @@ import '../models/product_details.dart';
 
 class ProfileGetxController extends GetxController {
   final ProfileApiController profileApiController = ProfileApiController();
-  RxList<Profile> profile = <Profile>[].obs;
+  Map<String, dynamic>? profile;
 
   RxBool loading = false.obs;
 
@@ -21,7 +21,7 @@ class ProfileGetxController extends GetxController {
 
   Future<void> getProfile() async {
     loading.value = true;
-    profile.value = await profileApiController.getProfile();
+    profile = await profileApiController.getProfile();
     loading.value = false;
     update();
   }

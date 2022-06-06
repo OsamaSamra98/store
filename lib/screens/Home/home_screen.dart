@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,7 +31,20 @@ class _home_ScreenState extends State<home_Screen> with ApiMixin {
   var request;
 
   Future getCategory() async {
-    request = await http.get(getUrl(ApiSettings.CATEGORY), );
+    request = await http.get(getUrl(ApiSettings.CATEGORY),
+        headers: {
+           'Accept':'application/json',
+
+    });
+    log('request::${request.statusCode}');
+
+    if (isSuccessRequest(request.statusCode)) {
+     var  data = request.body;
+      log('data::${data}');
+
+      return data;
+    }
+
     return request;
 
   }
@@ -57,6 +72,7 @@ class _home_ScreenState extends State<home_Screen> with ApiMixin {
                 Divider(color: Colors.transparent),
                 GestureDetector(
                   onTap: (){
+                    getCategory();
                     // Get.to(category_screen(categoryName: 'test'));
                   },
                   child: Row(

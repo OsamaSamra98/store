@@ -15,16 +15,16 @@ import '../helper/api_mixin.dart';
 class ProfileApiController with ApiMixin {
 
 
-  Future<List<Profile>> getProfile() async {
+  Future getProfile() async {
     var response = await http.get(getUrl(ApiSettings.profile),
    headers: {
         'X-Requested-With': 'XMLHttpRequest',      'Accept':'application/json',
 
         });
     if (isSuccessRequest(response.statusCode)) {
-      var data = jsonDecode(response.body) as List;
-      List<Profile> profile = data.map((e) => Profile.fromJson(e)).toList();
-      return profile;
+      Map<String, dynamic> data =  Map<String, dynamic>.from(json.decode(response.body));
+
+      return data;
     }
     return [];
   }

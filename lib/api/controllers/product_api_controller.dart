@@ -35,6 +35,8 @@ class ProductApiController with ApiMixin {
           'X-Requested-With': 'XMLHttpRequest',      'Accept':'application/json',
 
         });
+    log(response.body);
+
     if (isSuccessRequest(response.statusCode)) {
       var data = jsonDecode(response.body);
       var productDetails = ProductDetails.fromJson(data);

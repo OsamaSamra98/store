@@ -13,7 +13,7 @@ class ApiSettings {
 
   //product re
   static const String PRODUCT_DETAILS = _BASE_URL + "products";
-  static const String profile = _BASE_URL + "users/1";
+  static const String profile = _BASE_URL + "users/2";
 
 
   //sub category
